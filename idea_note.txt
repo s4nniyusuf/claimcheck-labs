@@ -1,0 +1,15 @@
+The Nigerian e-commerce sector is booming and projected to reach $22.9B by 2030. However, behind this growth lies a persistent challenge:
+The “What I ordered vs what I got” problem, where customers receive products that do not match their expectations.
+
+Over time, this creates a deeper issue than just bad purchases—it erodes trust, and once trust drops, repurchase intention declines.
+
+My idea?
+If platforms already display product reviews, we can go a step further by systematically comparing:
+> What sellers claim (product descriptions and metadata)
+> What customers actually experience (reviews and feedback)
+> From this, we can:
+    - Identify gaps between expectation and reality
+    - Quantify product reliability
+    - Generate a trust score with meaning, not just a number
+
+The goal is not only to help customers make better decisions, but also to encourage seller transparency and accountability. 
