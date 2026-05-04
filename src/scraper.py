@@ -136,7 +136,7 @@ def scrape_product_description_and_review(page, product_url, product_id):
 
     except PlaywrightTimeoutError:
         print(f"  Timed out loading product page: {product_url}")
-        return "N/A", []
+        return "N/A", "N/A", []
     finally:
         page.go_back()
         time.sleep(2)
