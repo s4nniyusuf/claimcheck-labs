@@ -175,7 +175,7 @@ def save_products_details_to_csv(products):
     file_path = main_dir  / 'data' / 'products_details.csv'
     file_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(file_path, index=False)
-    print("Product details saved to data/products_details.csv")
+    print("Product details saved to data/products.csv")
 
 
 def save_products_reviews_to_csv(reviews):
@@ -184,7 +184,7 @@ def save_products_reviews_to_csv(reviews):
     file_path = main_dir / 'data' / 'products_reviews.csv'
     file_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(file_path, index=False)
-    print("Product reviews saved to data/products_reviews.csv")
+    print("Product reviews saved to data/reviews.csv")
 
 
 def scrape_jumia(page, url):
