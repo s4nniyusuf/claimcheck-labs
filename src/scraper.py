@@ -172,19 +172,19 @@ def go_to_next_page(page):
 def save_products_details_to_csv(products):
     df = pd.DataFrame(products)
     main_dir = Path(__file__).parent.parent 
-    file_path = main_dir  / 'data' / 'products.csv'
+    file_path = main_dir  / 'data' / 'raw' / 'products.csv'
     file_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(file_path, index=False)
-    print("Product details saved to data/products.csv")
+    print("Product details saved to data/raw/products.csv")
 
 
 def save_products_reviews_to_csv(reviews):
     df = pd.DataFrame(reviews)
     main_dir = Path(__file__).parent.parent 
-    file_path = main_dir / 'data' / 'reviews.csv'
+    file_path = main_dir / 'data' / 'raw' / 'reviews.csv'
     file_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(file_path, index=False)
-    print("Product reviews saved to data/reviews.csv")
+    print("Product reviews saved to data/raw/reviews.csv")
 
 
 def scrape_jumia(page, url):
