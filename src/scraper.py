@@ -47,7 +47,6 @@ def parse_products(soup):
             "name":          safe_get(card, "h3", "name"),
             "current_price": safe_get(card, "div", "prc"),
             "old_price":     safe_get(card, "div", "old"),
-            "rating":        safe_get(card, "div", "stars _s"),
         }])
     return products
 
@@ -58,9 +57,7 @@ def print_product_summary(product, index, total):
     print(f"  URL:           {product['url']}")
     print(f"  Name:          {product['name']}")
     print(f"  Current Price: {product['current_price']}")
-    print(f"  Old Price:     {product['old_price']}")
-    print(f"  Rating:        {product['rating']}")
-  
+    print(f"  Old Price:     {product['old_price']}")  
 
 
 def parse_reviews(soup, product_id):
@@ -94,7 +91,7 @@ def parse_reviews(soup, product_id):
             "product_id": product_id,
             "reviewer_name": reviewer_name,
             "review_date": review_date,
-            "rating": rating,
+            "reviewer_rating": rating,
             "review_title": review_title,
             "review_text": review_text
         })
@@ -114,7 +111,12 @@ def scrape_product_description_and_review(page, product_url, product_id):
         image_url = img_el.get("src") or img_el.get("data-src") if img_el else None
 
         desc_el = soup.find("div", class_="markup -mhm -pvl -oxa -sc")
+        rating_el = soup.find("div", class_="-fs29 -yl5 -pvxs")
+
         description = desc_el.text.strip() if desc_el else "N/A"
+        rating = rating_el.text.strip() if rating_el else "N/A"
+
+        # Decided to get ratings from product page as they are based on all reviews
 
         see_all = soup.find("a", class_="btn _def _ti -mhs -fsh0")
         if see_all and see_all.text.strip().startswith("See All"):
@@ -132,11 +134,11 @@ def scrape_product_description_and_review(page, product_url, product_id):
             # Fall back to reviews already on the product page
             reviews = parse_reviews(soup=soup, product_id=product_id)
 
-        return image_url, description, reviews
+        return image_url, description, rating, reviews
 
     except PlaywrightTimeoutError:
         print(f"  Timed out loading product page: {product_url}")
-        return "N/A", "N/A", []
+        return "N/A", "N/A", "N/A", []
     finally:
         page.go_back()
         time.sleep(2)
@@ -213,7 +215,7 @@ def scrape_jumia(page, url):
         for i, product in enumerate(page_products, start=1):
             print_product_summary(product=product, index=i, total=len(page_products))
 
-            image_url, description, reviews = scrape_product_description_and_review(
+            image_url, description, rating, reviews = scrape_product_description_and_review(
                 page=page, 
                 product_url=product["url"], 
                 product_id=product["product_id"]
@@ -221,9 +223,11 @@ def scrape_jumia(page, url):
             
             product["image_url"] = image_url
             product["description"] = description
+            product["rating"] = rating
 
             print(f"Description: {description[:80]}")
             print(f"Image URL: {image_url}")
+            print(f"Rating: {rating}")
             print()
             print(f"Reviews found: {len(reviews)}")
             print("Reviews:")
