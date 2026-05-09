@@ -96,7 +96,7 @@ def parse_reviews(soup, product_id):
             "review_text": review_text
         })
 
-    time.sleep(2)
+    time.sleep(3)
     return reviews_data
 
 
@@ -116,8 +116,8 @@ def scrape_product_description_and_review(page, product_url, product_id):
         description = desc_el.text.strip() if desc_el else "N/A"
         rating = rating_el.text.strip() if rating_el else "N/A"
 
-        # Decided to get ratings from product page as they are based on all reviews
-
+        # Decided to use ratings from the product page, as they reflect the average customer feedback for delivered items
+       
         see_all = soup.find("a", class_="btn _def _ti -mhs -fsh0")
         if see_all and see_all.text.strip().startswith("See All"):
             reviews_url = f"https://www.jumia.com.ng{see_all['href']}"
