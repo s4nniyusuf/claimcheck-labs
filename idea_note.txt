@@ -13,3 +13,12 @@ If platforms already display product reviews, we can go a step further by system
     - Generate a trust score with meaning, not just a number
 
 The goal is not only to help customers make better decisions, but also to encourage seller transparency and accountability. 
+
+
+Sizing – Anything about fit, measurements, tight/loose, adjustable sizes.
+Quality – Material, durability, stitching, fabric feel, longevity.
+Design – Style, aesthetic, patterns, silhouettes, embellishments.
+Item Accuracy – Whether the product matches the description/claimed features.
+Delivery – Shipping speed, packaging, condition on arrival.
+Color Options – Availability of colors, matching the product images.
+Comfort / Wearability – How it feels to wear, flexibility, softness, support.
